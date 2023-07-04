@@ -7,7 +7,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
+import str.project.airwaysbe.database.FligTable;
 import str.project.airwaysbe.database.TickTable;
+import str.project.airwaysbe.models.Flight;
 import str.project.airwaysbe.models.Ticket;
 import str.project.airwaysbe.services.TicketContracts;
 import str.project.airwaysbe.utils.Response;
@@ -18,6 +20,7 @@ import str.project.airwaysbe.utils.Response;
 public class TicketServices implements TicketContracts{
 
     private TickTable tickets;
+    private FligTable flights;
 
     @Override
     public Response<Ticket> bookTicket(Ticket newTicket){
@@ -28,6 +31,13 @@ public class TicketServices implements TicketContracts{
         newTicket.setPnrNo(Long.toString(stMills));
 
         Ticket resTicket = tickets.save(newTicket);
+
+        List<Flight> resFlights = flights.findByFlightNumber(resTicket.getFlightNumber());
+        Flight thatFlight = resFlights.get(0);
+
+        thatFlight.setSeatAvailability(thatFlight.getSeatAvailability()-resTicket.getSeatsBooked());
+        flights.save(thatFlight);
+        
 
         return new Response<Ticket>( resTicket, "Successfully booked", HttpStatus.OK, true );
 
@@ -42,8 +52,16 @@ public class TicketServices implements TicketContracts{
             return new Response<Ticket>(null, pnrNo, HttpStatus.BAD_REQUEST, false);
         }
 
-        tickets.deleteByPnrNo(null);
+        Ticket resTick = resTicks.get(0);
+        int seatsBooked = resTick.getSeatsBooked();
+
+        tickets.deleteById(resTick.getId());
         
+        List<Flight> resFlights = flights.findByFlightNumber(resTick.getFlightNumber());
+        Flight thatFlight = resFlights.get(0);
+
+        thatFlight.setSeatAvailability(thatFlight.getSeatAvailability()+seatsBooked);
+        flights.save(thatFlight);
         return new Response<Ticket>(null, "Successfully cancelled", HttpStatus.OK, true);
 
     }

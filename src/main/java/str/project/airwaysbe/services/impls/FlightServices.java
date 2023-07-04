@@ -23,7 +23,10 @@ public class FlightServices implements FlightContracts {
     }
 
     public Response<List<Flight>> searchByName(String fliName){
+        System.out.println(fliName);
         List<Flight> resFlights = flights.findByFlightNameContainingIgnoreCase(fliName);
+        // List<Flight> resFlights = flights.findAll();
+        System.out.println(resFlights.size());
         return new Response<List<Flight>>(resFlights, "Flights fetched successfully", HttpStatus.ACCEPTED, true);
     }
 
