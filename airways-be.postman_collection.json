@@ -1,0 +1,217 @@
+{
+	"info": {
+		"_postman_id": "4f5e5db6-048f-4591-89bd-37af202262b7",
+		"name": "airways-be",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\":\"JP\",\n    \"password\":\"paityam\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/user/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "signup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\":\"JP\",\n    \"password\":\"paityam\",\n    \"age\":38,\n    \"dob\":\"1-4-1976\",\n    \"mobile_no\":\"989898989\",\n    \"city\":\"Chennai\",\n    \"state\":\"Tamil Nadu\",\n    \"gender\":\"female\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/user/signup",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getRoutes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/flights/route?from=chennai&to=america",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"flights",
+						"route"
+					],
+					"query": [
+						{
+							"key": "from",
+							"value": "chennai"
+						},
+						{
+							"key": "to",
+							"value": "america"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "searchFlightName",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/flights/qbyname?flightName=Air",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"flights",
+						"qbyname"
+					],
+					"query": [
+						{
+							"key": "flightName",
+							"value": "Air"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "searchPlace",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/flights/qbyplace?from=chen&to=ame",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"flights",
+						"qbyplace"
+					],
+					"query": [
+						{
+							"key": "from",
+							"value": "chen"
+						},
+						{
+							"key": "to",
+							"value": "ame"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "bookTicket",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"JP\",\n    \"flightNumber\": \"AC201\",\n    \"seatsBooked\": 2,\n    \"amount\": 3000\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/ticket/book",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ticket",
+						"book"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "cancelTicket",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"JP\",\n    \"flightNumber\": \"AC201\",\n    \"seatsBooked\": 2,\n    \"amount\": 3000\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/ticket/cancel?pnrNo=1688502903503",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ticket",
+						"cancel"
+					],
+					"query": [
+						{
+							"key": "pnrNo",
+							"value": "1688502903503"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

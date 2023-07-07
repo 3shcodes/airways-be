@@ -26,7 +26,13 @@ public class Ticket {
     @Column(name = "seats_booked")
     private int seatsBooked;
     private int amount;
-
+    @Column(name = "fly_at")
+    private String flyAt;
+    private String source; 
+    private String destination; 
+    private String dept_time;
+    private String arr_time;
+    private String flight_name;
     public boolean preValid() {
         if ( username.equals("") || flightNumber.equals("") || seatsBooked==0 || amount==0  ) {
             return false;

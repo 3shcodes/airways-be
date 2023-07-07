@@ -1,14 +1,17 @@
 package str.project.airwaysbe.services.impls;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
 import str.project.airwaysbe.database.FligTable;
 import str.project.airwaysbe.database.TickTable;
+import str.project.airwaysbe.models.CustomTicket;
 import str.project.airwaysbe.models.Flight;
 import str.project.airwaysbe.models.Ticket;
 import str.project.airwaysbe.services.TicketContracts;
@@ -19,8 +22,18 @@ import str.project.airwaysbe.utils.Response;
 @AllArgsConstructor
 public class TicketServices implements TicketContracts{
 
+    @Autowired
     private TickTable tickets;
+    @Autowired
     private FligTable flights;
+
+    @Override
+    public Response<List<Ticket>> getTickets(String userName){
+
+        List<Ticket> ticks = tickets.findJoined(userName);
+        return new Response<List<Ticket>>(ticks, "Tickets fetched successfully", HttpStatus.ACCEPTED, true);
+    };
+
 
     @Override
     public Response<Ticket> bookTicket(Ticket newTicket){

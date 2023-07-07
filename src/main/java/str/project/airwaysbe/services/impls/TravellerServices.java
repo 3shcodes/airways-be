@@ -2,6 +2,7 @@ package str.project.airwaysbe.services.impls;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,7 @@ import str.project.airwaysbe.utils.Response;
 @AllArgsConstructor
 public class TravellerServices implements TravellerContracts{
 
+    @Autowired
     private TravTable travTable;
 
     @Override

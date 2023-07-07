@@ -2,6 +2,7 @@ package str.project.airwaysbe.services.impls;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,7 @@ import str.project.airwaysbe.services.FlightContracts;
 @AllArgsConstructor
 public class FlightServices implements FlightContracts {
     
+    @Autowired
     private FligTable flights;
 
     public Response<List<Flight>> getByPlace(String from, String to){
