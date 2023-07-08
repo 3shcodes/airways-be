@@ -10,7 +10,7 @@
 FROM openjdk:17-jdk-slim
 
 # Copy the jar to the production image from the builder stage.
-ADD --from=build target/airways-be-0.0.1-SNAPSHOT.jar app.jar
+ADD target/airways-be-0.0.1-SNAPSHOT.jar app.jar
 
 # ENV PORT=8080
 EXPOSE 8080
